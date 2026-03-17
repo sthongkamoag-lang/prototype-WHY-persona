@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Welfare Master — Pilot Campaign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- TAB NAVIGATION -->
+<nav class="tab-bar" id="tabBar">
+  <button class="tab-btn" data-persona="genz" onclick="switchPersona('genz')">
+    <span class="tab-icon">⚡</span>
+    <span class="tab-label">น้องใหม่ไฟแรง</span>
+    <span class="tab-badge">Gen Z</span>
+  </button>
+  <div class="tab-divider"></div>
+  <button class="tab-btn" data-persona="mom" onclick="switchPersona('mom')">
+    <span class="tab-icon">💛</span>
+    <span class="tab-label">คุณแม่สายสู้</span>
+    <span class="tab-badge">Gen Y</span>
+  </button>
+</nav>
+
+<!-- ==================== PERSONA A: GEN Z OPTIMIZER ==================== -->
+<main class="persona-view" id="genz-view">
+  <div class="dashboard genz">
+    <!-- Header -->
+    <header class="dash-header genz-header">
+      <div class="header-top">
+        <div class="logo-mark">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-label="Welfare Master">
+            <rect width="32" height="32" rx="8" fill="#6C63FF"/>
+            <text x="16" y="22" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="sans-serif">W</text>
+          </svg>
+          <div>
+            <div class="logo-text">Welfare Master</div>
+            <div class="logo-sub">Pilot Campaign Mockup</div>
+          </div>
+        </div>
+        <span class="demo-badge">DEMO</span>
+      </div>
+      <!-- AI Message -->
+      <div class="ai-msg genz-ai">
+        <span class="ai-dot"></span>
+        <p>AI: เงินของคุณทำกำไรได้มากกว่าเงินเดือนเฉลี่ยวันนี้แล้ว แผนเกษียณตอนอายุ 40 ของคุณคืบหน้าไปอีก +0.05% ในขณะที่คุณกำลังส่งงาน</p>
+      </div>
+      <!-- Name + Info -->
+      <div class="user-greeting genz-greet">
+        <h1>สวัสดี, <span class="highlight-name">สุนธร</span></h1>
+        <p class="user-meta">ข้าราชการบรรจุใหม่ · อายุงาน 2 ปี · กทม.</p>
+      </div>
+    </header>
+
+    <!-- FREEDOM CLOCK -->
+    <section class="card genz-card freedom-clock">
+      <div class="card-header-row">
+        <span class="card-icon">🕐</span>
+        <span class="card-title">FREEDOM CLOCK — เวลาจนถึงเกษียณก่อนกำหนด</span>
+        <span class="rank-badge">🏆 Rank #12</span>
+      </div>
+      <div class="clock-display">
+        <div class="clock-big">
+          <span class="clock-num" id="gz-years">17</span>
+          <span class="clock-unit">ปี</span>
+          <span class="clock-num" id="gz-months">8</span>
+          <span class="clock-small-text">(เดิม <s>18 ปี 4 เดือน</s> 46 นาที)</span>
+        </div>
+        <p class="clock-note">* คำนวณจากดอกเบี้ยทบต้น (Compound Interest) และแผนการลงทุนปัจจุบัน · เป้าหมาย: เกษียณอายุ 40 ปี</p>
+      </div>
+    </section>
+
+    <!-- Performance -->
+    <section class="card genz-card">
+      <div class="metric-row">
+        <div class="metric-label">พอร์ตเติบโต</div>
+        <div class="metric-icon">📈</div>
+      </div>
+      <div class="metric-big green">+8.4%</div>
+      <div class="metric-sub">YTD · ชนะ Benchmark +2.1%</div>
+    </section>
+
+    <!-- Automation -->
+    <section class="card genz-card">
+      <div class="metric-row">
+        <div class="metric-label">AUTOMATION</div>
+      </div>
+      <div class="auto-status">
+        <span class="auto-dot green-dot"></span>
+        <span>AI กำลังทำงานแทนคุณ</span>
+      </div>
+      <div class="auto-detail">ตรวจสอบแผน กบข. อัตโนมัติทุกวัน</div>
+    </section>
+
+    <!-- Saving Rate -->
+    <section class="card genz-card">
+      <div class="metric-row">
+        <div class="metric-label">อัตราออม</div>
+        <div class="metric-icon-circle"></div>
+      </div>
+      <div class="metric-big">15%</div>
+      <div class="metric-sub">ของเงินเดือน · สูงกว่าค่าเฉลี่ย 18%</div>
+    </section>
+
+    <!-- SCENARIO COMPARISON -->
+    <section class="card genz-card scenario-card">
+      <div class="scenario-header">
+        <span class="card-icon">📊</span>
+        <span>SCENARIO COMPARISON — ถ้าเพิ่มออมอีก จะเกิดอะไรขึ้น?</span>
+      </div>
+      <!-- Slider -->
+      <div class="slider-container">
+        <label class="slider-label">เพิ่มอัตราออมอีก</label>
+        <div class="slider-row">
+          <input type="range" min="0" max="20" value="0" step="5" class="scenario-slider" id="gz-slider" oninput="updateScenario(this.value)">
+          <span class="slider-value" id="gz-slider-val">+0%</span>
+        </div>
+        <div class="slider-ticks">
+          <span>ไม่เพิ่ม (0%)</span>
+          <span>+5%</span>
+          <span>+10%</span>
+          <span>+15%</span>
+          <span>+20%</span>
+        </div>
+      </div>
+      <!-- Comparison Columns -->
+      <div class="scenario-compare">
+        <div class="scenario-col current">
+          <div class="scenario-col-label">⚡ แผนปัจจุบัน</div>
+          <div class="scenario-item">
+            <span class="scenario-item-label">เงินสะสมตอนอายุ 40</span>
+            <span class="scenario-item-val" id="gz-current-sum">฿0.86M</span>
+          </div>
+          <div class="scenario-item">
+            <span class="scenario-item-label">เงินต่อเดือนหลังเกษียณ</span>
+            <span class="scenario-item-val" id="gz-current-monthly">฿2,700</span>
+          </div>
+          <div class="scenario-item">
+            <span class="scenario-item-label">อายุเกษียณจริง</span>
+            <span class="scenario-item-val" id="gz-current-age">53.8 ปี</span>
+          </div>
+        </div>
+        <div class="scenario-col boosted" id="gz-boosted-col">
+          <div class="scenario-col-label" id="gz-boosted-label">เหมือนกัน · ยังไม่เลื่อน</div>
+          <div class="scenario-item">
+            <span class="scenario-item-label">เงินสะสมตอนอายุ 40</span>
+            <span class="scenario-item-val" id="gz-boosted-sum">฿0.86M</span>
+          </div>
+          <div class="scenario-item">
+            <span class="scenario-item-label">เงินต่อเดือนหลังเกษียณ</span>
+            <span class="scenario-item-val" id="gz-boosted-monthly">฿2,700</span>
+          </div>
+          <div class="scenario-item">
+            <span class="scenario-item-label">อายุเกษียณจริง</span>
+            <span class="scenario-item-val" id="gz-boosted-age">53.8 ปี</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERFORMANCE BENCHMARK -->
+    <section class="card genz-card">
+      <div class="metric-row">
+        <span class="card-icon">📊</span>
+        <span class="card-title">PERFORMANCE BENCHMARK</span>
+      </div>
+      <div class="benchmark-table">
+        <div class="bench-row">
+          <span>พอร์ตของคุณ (Aggressive Growth)</span>
+          <span class="green">+8.4%</span>
+        </div>
+        <div class="bench-row highlight-row">
+          <span>🏆 Master Portfolio อันดับ 1</span>
+          <span class="green">+12.1%</span>
+        </div>
+        <div class="bench-row">
+          <span>ค่าเฉลี่ยข้าราชการ Gen Z</span>
+          <span class="green">+3.2%</span>
+        </div>
+        <p class="bench-note">* เปรียบเทียบผลตอบแทนสะสมตั้งแต่ต้นปีถึงปัจจุบัน (Year-to-Date)</p>
+      </div>
+    </section>
+
+    <!-- CTA Buttons -->
+    <section class="card genz-card cta-section">
+      <button class="cta-btn genz-cta" onclick="alert('Tax Simulator — Coming Soon!')">
+        <span>🧮</span> Tax Simulator
+        <p class="cta-desc">จำลองการลดหย่อนภาษีเพื่อเพิ่มเงินออม</p>
+        <span class="cta-arrow">เปิด Simulator ›</span>
+      </button>
+      <button class="cta-btn genz-cta" onclick="alert('Zero Data Entry — Coming Soon!')">
+        <span>⭕</span> Zero Data Entry
+        <p class="cta-desc">โยนไฟล์ PDF คำนวณ ให้ AI อัปเดตทุกอย่าง</p>
+        <span class="cta-arrow">อัปโหลด PDF ›</span>
+      </button>
+    </section>
+
+    <!-- Optimize Now -->
+    <section class="card genz-card optimize-card">
+      <div class="optimize-icon">⚡</div>
+      <div class="optimize-text">Optimize Now — ปรับพอร์ตตาม Master Portfolio ล่าสุด</div>
+    </section>
+
+    <!-- FEEDBACK FORM - GEN Z -->
+    <section class="card feedback-card genz-feedback" id="genz-feedback">
+      <div class="feedback-header">
+        <span>💬</span>
+        <span>ฟีดแบค — หน้าจอนี้เป็นยังไงบ้าง?</span>
+      </div>
+      <p class="feedback-question">ดู Dashboard "น้องใหม่ไฟแรง" แล้วรู้สึกยังไง? เลือก Emoji แล้วคุณรู้สึกอย่างไร บ้าง?</p>
+      <div class="emoji-rating" id="gz-emoji-rating">
+        <button class="emoji-btn" data-rating="5" data-label="ชอบมาก" onclick="selectEmoji(this,'genz')">😍<br><span>ชอบมาก</span></button>
+        <button class="emoji-btn" data-rating="4" data-label="ดี" onclick="selectEmoji(this,'genz')">😊<br><span>ดี</span></button>
+        <button class="emoji-btn" data-rating="3" data-label="เฉยๆ" onclick="selectEmoji(this,'genz')">😐<br><span>เฉยๆ</span></button>
+        <button class="emoji-btn" data-rating="2" data-label="งง" onclick="selectEmoji(this,'genz')">😵<br><span>งง</span></button>
+        <button class="emoji-btn" data-rating="1" data-label="ไม่ชอบ" onclick="selectEmoji(this,'genz')">😡<br><span>ไม่ชอบ</span></button>
+      </div>
+      <!-- Conditional: Confused section pills -->
+      <div class="confused-section hidden" id="gz-confused">
+        <p class="confused-q">มีอะไรบนกราฟที่เห็นงงไหม? (ไม่บังคับ)</p>
+        <div class="pill-group" id="gz-pills">
+          <button class="pill-btn" onclick="togglePill(this)">Freedom Clock</button>
+          <button class="pill-btn" onclick="togglePill(this)">Scenario Comparison</button>
+          <button class="pill-btn" onclick="togglePill(this)">Performance Benchmark</button>
+          <button class="pill-btn" onclick="togglePill(this)">ภาษาที่ใช้</button>
+          <button class="pill-btn" onclick="togglePill(this)">ตัวเลข/สถิติ</button>
+          <button class="pill-btn" onclick="togglePill(this)">Automation Status</button>
+          <button class="pill-btn" onclick="togglePill(this)">ส่วนอื่นๆ</button>
+        </div>
+      </div>
+      <textarea class="feedback-comment" id="gz-comment" placeholder="เย้ อยากเห็นอะไรเพิ่มบ้าง? เช่น ส่วนไหนเข้าใจง่าย, ส่วนไหนยังงง..."></textarea>
+      <button class="submit-btn genz-submit" onclick="submitFeedback('genz')">ส่งความคิดเห็น</button>
+      <p class="feedback-privacy">ข้อมูลฟีดแบคจะถูกพัฒนาแอปต่อเท่านั้น · ไม่มีการเก็บข้อมูลส่วนบุคคล</p>
+      <!-- Thank you state -->
+      <div class="thank-you hidden" id="gz-thankyou">
+        <div class="ty-emoji">🎉</div>
+        <p class="ty-text">ขอบคุณที่ช่วยเทส! ฟีดแบคของคุณช่วยให้ Welfare Master ดีขึ้นจริงๆ 💪</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="dash-footer">
+      <p>Welfare Master · Pilot Campaign Mockup</p>
+      <p class="footer-sub">ข้อมูลที่แสดงเป็นตัวอย่างเพื่อการทดสอบเท่านั้น</p>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="pplx-link">Created with Perplexity Computer</a>
+    </footer>
+  </div>
+</main>
+
+<!-- ==================== PERSONA B: BUSY MOM ==================== -->
+<main class="persona-view hidden" id="mom-view">
+  <div class="dashboard mom">
+    <!-- Header -->
+    <header class="dash-header mom-header">
+      <div class="header-top">
+        <div class="logo-mark">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-label="Welfare Master">
+            <rect width="32" height="32" rx="8" fill="#2E9E6E"/>
+            <text x="16" y="22" text-anchor="middle" fill="white" font-weight="700" font-size="16" font-family="sans-serif">W</text>
+          </svg>
+          <div>
+            <div class="logo-text mom-logo">Welfare Master</div>
+            <div class="logo-sub">Pilot Campaign Mockup</div>
+          </div>
+        </div>
+        <span class="demo-badge mom-badge">DEMO</span>
+      </div>
+      <!-- AI Message -->
+      <div class="ai-msg mom-ai">
+        <span class="ai-dot mom-dot"></span>
+        <p>อรุณสวัสดิ์ค่ะ วันนี้ตลาดผันผวนแต่ไม่ต้องกังวลนะคะ แผนการศึกษาของลูกคุณยังปลอดภัยและเดินหน้าตามเป้า หมาย 98% แล้ว ทำงานให้สนุกนะคะ</p>
+      </div>
+      <!-- Greeting -->
+      <div class="user-greeting mom-greet">
+        <h1>สวัสดีค่ะ, <span class="highlight-name mom-name">คุณวิกา</span></h1>
+        <p class="user-meta">ข้าราชการส่วนกลาง · อายุงาน 10 ปี · กทม.</p>
+      </div>
+    </header>
+
+    <!-- DIGNITY CLOCK + LIFESTYLE SLIDER -->
+    <section class="card mom-card dignity-section">
+      <div class="card-header-row">
+        <span class="card-icon">🕐</span>
+        <span class="card-title">วันแห่งศักดิ์ศรี — ชีวิตหลังเกษียณที่สง่างาม</span>
+      </div>
+      <div class="clock-display mom-clock">
+        <div class="clock-big mom-big">
+          <span class="clock-num mom-num" id="mom-years">12</span>
+          <span class="clock-unit mom-unit">ปี</span>
+          <span class="clock-num mom-num" id="mom-months">4</span>
+          <span class="clock-unit mom-unit">เดือน</span>
+        </div>
+        <p class="mom-clock-note">คุณมีเงินใช้ชีวิตหลังเกษียณแบบ <span id="mom-lifestyle-label">🏠 มาตรฐาน</span> ได้ <span id="mom-lifestyle-sub">ใช้จ่ายมาตรฐาน ใต้แผนบำนาจีที่ดี</span></p>
+        <div class="coverage-bar-container">
+          <div class="coverage-label">ความครอบคลุมหลุมหลังเกษียณ</div>
+          <div class="coverage-val" id="mom-coverage">68%</div>
+        </div>
+        <div class="coverage-bar">
+          <div class="coverage-fill" id="mom-coverage-bar" style="width:68%"></div>
+        </div>
+      </div>
+      <!-- Lifestyle Slider -->
+      <div class="lifestyle-slider-wrap">
+        <label class="slider-label mom-slider-label">ปรับไลฟ์สไตล์หลังเกษียณ เพื่อดูว่า "วันแห่งศักดิ์ศรี" เปลี่ยนไป อย่างไร</label>
+        <div class="lifestyle-options" id="mom-lifestyle-slider">
+          <button class="lifestyle-btn" data-level="0" onclick="setLifestyle(0)">
+            <span class="ls-emoji">🌱</span>
+            <span class="ls-text">ประหยัด</span>
+          </button>
+          <button class="lifestyle-btn active" data-level="1" onclick="setLifestyle(1)">
+            <span class="ls-emoji">🏠</span>
+            <span class="ls-text">มาตรฐาน</span>
+          </button>
+          <button class="lifestyle-btn" data-level="2" onclick="setLifestyle(2)">
+            <span class="ls-emoji">✨</span>
+            <span class="ls-text">สบาย</span>
+          </button>
+        </div>
+        <div class="lifestyle-detail" id="mom-lifestyle-detail">
+          <div class="ls-detail-item">
+            <span>ใช้จ่ายตามสบายแบบมาตรฐาน สมดุลระหว่างความสุขและ ความมั่นคง</span>
+          </div>
+          <div class="ls-detail-item">
+            <span class="ls-cost-label">ค่าใช้จ่ายประมาณ</span>
+            <span class="ls-cost-val" id="mom-cost">28,000</span>
+            <span class="ls-cost-unit"> บาท/เดือน</span>
+          </div>
+          <div class="ls-detail-item note">
+            <span>💡 ไลฟ์สไตล์มาตรฐาน สมดุลระหว่างความสุขและ ความมั่นคง</span>
+          </div>
+        </div>
+        <p class="ls-footnote">* ลองเลื่อนดู เพื่อดูว่าไลฟ์สไตล์ที่เลือกส่งผลต่อ "วันแห่งศักดิ์ศรี" อย่างไร</p>
+      </div>
+    </section>
+
+    <!-- Goal: Education Fund -->
+    <section class="card mom-card">
+      <div class="metric-row">
+        <span class="card-icon">🎓</span>
+        <span class="card-title">ทุนการศึกษาลูก</span>
+      </div>
+      <div class="metric-big mom-metric">78%</div>
+      <div class="metric-sub">เป้าหมาย 500,000 บาท · เหลืออีก 110,000</div>
+      <div class="progress-bar mom-progress">
+        <div class="progress-fill" style="width:78%"></div>
+      </div>
+    </section>
+
+    <!-- Monthly Saving -->
+    <section class="card mom-card">
+      <div class="metric-row">
+        <span class="card-icon">🐷</span>
+        <span class="card-title">ออมเดือนนี้</span>
+        <span class="info-icon" title="ยอดออมรวมเดือนนี้">ℹ️</span>
+      </div>
+      <div class="metric-big mom-metric">4,200</div>
+      <div class="metric-sub">บาท · ออมอัตโนมัติ 15% ของเงินเดือน</div>
+    </section>
+
+    <!-- Emergency Fund -->
+    <section class="card mom-card">
+      <div class="metric-row">
+        <span class="card-icon">💰</span>
+        <span class="card-title">เงินสำรองฉุกเฉิน</span>
+        <span class="info-icon">ℹ️</span>
+      </div>
+      <div class="metric-big mom-metric">3.2</div>
+      <div class="metric-sub">เดือน · เป้าหมาย 6 เดือน</div>
+    </section>
+
+    <!-- PDF Upload Zone -->
+    <section class="card mom-card upload-zone">
+      <div class="upload-icon">📤</div>
+      <h3 class="upload-title">อัปเดตความอุ่นใจล่าสุด</h3>
+      <p class="upload-desc">โยนไฟล์ PDF ใบแจ้งเข้ามา ไม่ต้องพิมพ์ตัวเลขเองค่ะ</p>
+      <button class="cta-btn mom-cta upload-btn" onclick="alert('PDF Upload — Coming Soon!')">📎 เลือกไฟล์ PDF</button>
+    </section>
+
+    <!-- Weekly Summary -->
+    <section class="card mom-card">
+      <div class="metric-row">
+        <span class="card-icon">📋</span>
+        <span class="card-title">สรุปประจำสัปดาห์</span>
+      </div>
+      <div class="weekly-item">
+        <span class="wi-icon">🤖</span>
+        <div>
+          <strong>แผนออมอัตโนมัติทำงานเรียบร้อย</strong>
+          <p>ตัดเงินออม 4,200 บาท เมื่อวันศุกร์ที่ผ่านมา</p>
+        </div>
+      </div>
+      <div class="weekly-item">
+        <span class="wi-icon">🎓</span>
+        <div>
+          <strong>ทุนการศึกษาลูกเพิ่มขึ้น +1,200 บาท</strong>
+          <p>จากดอกเบี้ยสะสมเดือนนี้</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's Next -->
+    <section class="card mom-card whatsnext-card">
+      <div class="whatsnext-icon">💡</div>
+      <h3>เดือนนี้ควรทำอะไรเพิ่มไหม?</h3>
+    </section>
+
+    <!-- FEEDBACK FORM - MOM -->
+    <section class="card feedback-card mom-feedback" id="mom-feedback">
+      <div class="feedback-header mom-fh">
+        <span>💬</span>
+        <span>ฟีดแบค — หน้าจอนี้ทำให้คุณรู้สึกอย่างไรคะ?</span>
+      </div>
+      <p class="feedback-question">หลังจากดู Dashboard "คุณแม่สายสู้" แล้ว คุณรู้สึกอย่างไร บ้างคะ?</p>
+      <div class="emoji-rating" id="mom-emoji-rating">
+        <button class="emoji-btn" data-rating="5" data-label="ชอบมาก" onclick="selectEmoji(this,'mom')">😍<br><span>ชอบมาก</span></button>
+        <button class="emoji-btn" data-rating="4" data-label="ดี" onclick="selectEmoji(this,'mom')">😊<br><span>ดี</span></button>
+        <button class="emoji-btn" data-rating="3" data-label="เฉยๆ" onclick="selectEmoji(this,'mom')">😐<br><span>เฉยๆ</span></button>
+        <button class="emoji-btn" data-rating="2" data-label="งง" onclick="selectEmoji(this,'mom')">😵<br><span>งง</span></button>
+        <button class="emoji-btn" data-rating="1" data-label="ไม่ชอบ" onclick="selectEmoji(this,'mom')">😡<br><span>ไม่ชอบ</span></button>
+      </div>
+      <!-- Conditional: Confused section pills -->
+      <div class="confused-section hidden" id="mom-confused">
+        <p class="confused-q">มีส่วนไหนที่รู้สึกสับสนบ้างไหมคะ? (ไม่บังคับ)</p>
+        <div class="pill-group" id="mom-pills">
+          <button class="pill-btn" onclick="togglePill(this)">วันแห่งศักดิ์ศรี</button>
+          <button class="pill-btn" onclick="togglePill(this)">Lifestyle Slider</button>
+          <button class="pill-btn" onclick="togglePill(this)">ทุนการศึกษาลูก</button>
+          <button class="pill-btn" onclick="togglePill(this)">ภาษาที่ใช้</button>
+          <button class="pill-btn" onclick="togglePill(this)">ตัวเลข/สถิติ</button>
+          <button class="pill-btn" onclick="togglePill(this)">ส่วนอัปโหลด PDF</button>
+          <button class="pill-btn" onclick="togglePill(this)">ส่วนอื่นๆ</button>
+        </div>
+      </div>
+      <textarea class="feedback-comment" id="mom-comment" placeholder="เย้ อยากเห็นอะไรเพิ่มบ้าง? เช่น ส่วนไหนเข้าใจง่าย, ส่วนไหนยังงง..."></textarea>
+      <button class="submit-btn mom-submit" onclick="submitFeedback('mom')">ส่งความคิดเห็น</button>
+      <p class="feedback-privacy">ข้อมูลฟีดแบคจะถูกพัฒนาแอปต่อเท่านั้น · ไม่มีการเก็บข้อมูลส่วนบุคคล</p>
+      <!-- Thank you state -->
+      <div class="thank-you hidden" id="mom-thankyou">
+        <div class="ty-emoji">🙏</div>
+        <p class="ty-text">ขอบคุณที่สละเวลาให้ความคิดเห็นค่ะ ฟีดแบคของคุณจะช่วยให้ Welfare Master ดูแลทุกคนได้ดียิ่งขึ้นค่ะ 💚</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="dash-footer mom-footer">
+      <p>Welfare Master · Pilot Campaign Mockup</p>
+      <p class="footer-sub">ข้อมูลที่แสดงเป็นตัวอย่างเพื่อการทดสอบเท่านั้น</p>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="pplx-link">Created with Perplexity Computer</a>
+    </footer>
+  </div>
+</main>
+
+<script src="./app.js"></script>
+</body>
+</html>
