@@ -5,7 +5,8 @@
 // === Google Forms Config ===
 // Replace with your real Form ID and entry IDs after creating the Google Form
 const GOOGLE_FORM_CONFIG = {
-  actionUrl: "https://docs.google.com/forms/d/e/1ROnROBge-GVHA4b4c73QGhWGlAUf4_ZnDNZ5EMIRdLM/formResponse",
+  // เปลี่ยน actionUrl เป็นอันนี้ครับ (ใช้รหัส 1FAIpQL... แทน 1ROnRO...)
+  actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLScuBxxzQWyHRxWopwNSDGZOf3KZyy4ouurAzSO0C-KOdubuAg/formResponse",
   fields: {
     persona: "entry.794780842",
     rating: "entry.970064483",
@@ -187,21 +188,41 @@ function submitFeedback(persona) {
   const personaName = persona === 'genz' ? 'น้องใหม่ไฟแรง' : 'คุณแม่สายสู้';
   const time = new Date().toISOString();
   
-  const formData = new FormData();
-  formData.append(GOOGLE_FORM_CONFIG.fields.persona, personaName);
-  formData.append(GOOGLE_FORM_CONFIG.fields.rating, state.rating);
-  formData.append(GOOGLE_FORM_CONFIG.fields.ratingLabel, state.ratingLabel);
-  formData.append(GOOGLE_FORM_CONFIG.fields.confusedSection, state.confusedSections.join(', ') || '-');
-  formData.append(GOOGLE_FORM_CONFIG.fields.comment, comment || '-');
-  formData.append(GOOGLE_FORM_CONFIG.fields.time, time);
+  //const formData = new FormData();
+  //formData.append(GOOGLE_FORM_CONFIG.fields.persona, personaName);
+  //formData.append(GOOGLE_FORM_CONFIG.fields.rating, state.rating);
+  //formData.append(GOOGLE_FORM_CONFIG.fields.ratingLabel, state.ratingLabel);
+  //formData.append(GOOGLE_FORM_CONFIG.fields.confusedSection, state.confusedSections.join(', ') || '-');
+  //formData.append(GOOGLE_FORM_CONFIG.fields.comment, comment || '-');
+  //formData.append(GOOGLE_FORM_CONFIG.fields.time, time);
+  
+  // Send to Google Forms (no-cors, fire and forget) ของเดิม
+  //if (GOOGLE_FORM_CONFIG.actionUrl.indexOf('YOUR_FORM_ID') === -1) {
+  //  fetch(GOOGLE_FORM_CONFIG.actionUrl, {
+  //    method: 'POST',
+  //    mode: 'no-cors',
+  //    body: formData,
+  //  }).catch(() => {});
+  //}
+  // เปลี่ยนจากการใช้ new FormData() เป็น new URLSearchParams()
+  const urlParams = new URLSearchParams();
+  urlParams.append(GOOGLE_FORM_CONFIG.fields.persona, personaName);
+  urlParams.append(GOOGLE_FORM_CONFIG.fields.rating, state.rating);
+  urlParams.append(GOOGLE_FORM_CONFIG.fields.ratingLabel, state.ratingLabel);
+  urlParams.append(GOOGLE_FORM_CONFIG.fields.confusedSection, state.confusedSections.join(', ') || '-');
+  urlParams.append(GOOGLE_FORM_CONFIG.fields.comment, comment || '-');
+  urlParams.append(GOOGLE_FORM_CONFIG.fields.time, time);
   
   // Send to Google Forms (no-cors, fire and forget)
   if (GOOGLE_FORM_CONFIG.actionUrl.indexOf('YOUR_FORM_ID') === -1) {
     fetch(GOOGLE_FORM_CONFIG.actionUrl, {
       method: 'POST',
-      mode: 'no-cors',
-      body: formData,
-    }).catch(() => {});
+      mode: 'no-cors', // จำเป็นต้องใช้ no-cors สำหรับ Google Forms
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded' // เพิ่ม Header นี้เข้าไป
+      },
+      body: urlParams, // ส่ง urlParams แทน formData
+    }).catch((err) => console.error("Error submitting form:", err));
   }
   
   // Also log to console for demo
