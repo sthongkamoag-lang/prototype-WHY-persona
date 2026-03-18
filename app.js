@@ -3,9 +3,7 @@
 // ============================================
 
 // === Google Forms Config ===
-// Replace with your real Form ID and entry IDs after creating the Google Form
 const GOOGLE_FORM_CONFIG = {
-  // เปลี่ยน actionUrl เป็นอันนี้ครับ (ใช้รหัส 1FAIpQL... แทน 1ROnRO...)
   actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLScuBxxzQWyHRxWopwNSDGZOf3KZyy4ouurAzSO0C-KOdubuAg/formResponse",
   fields: {
     persona: "entry.794780842",
@@ -43,27 +41,121 @@ function switchPersona(persona) {
 // Initialize default persona
 document.querySelector('.tab-btn[data-persona="genz"]').classList.add('active');
 
-// === SCENARIO COMPARISON (Gen Z) ===
-const scenarioData = {
-  0:  { sum: '฿0.86M', monthly: '฿2,700', age: '53.8 ปี', label: 'เหมือนกัน · ยังไม่เลื่อน' },
-  5:  { sum: '฿1.05M', monthly: '฿3,400', age: '50.2 ปี', label: '🔥 ถ้าเพิ่มออม +5%' },
-  10: { sum: '฿1.28M', monthly: '฿4,200', age: '47.1 ปี', label: '🚀 ถ้าเพิ่มออม +10%' },
-  15: { sum: '฿1.54M', monthly: '฿5,100', age: '44.3 ปี', label: '💎 ถ้าเพิ่มออม +15%' },
-  20: { sum: '฿1.83M', monthly: '฿6,200', age: '41.8 ปี', label: '🏆 ถ้าเพิ่มออม +20%' },
+// === MODAL FUNCTIONS ===
+function openModal(id) {
+  document.getElementById(id).classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.add('hidden');
+  document.body.style.overflow = '';
+  // Reset PDF modal state
+  if (id === 'pdfModal') {
+    const upload = document.querySelector('.pdf-upload-card');
+    const hitl = document.getElementById('hitlCard');
+    if (upload) upload.classList.remove('hidden');
+    if (hitl) hitl.classList.add('hidden');
+  }
+}
+function showHitlView() {
+  document.querySelector('.pdf-upload-card').classList.add('hidden');
+  document.getElementById('hitlCard').classList.remove('hidden');
+}
+function hideHitlView() {
+  document.querySelector('.pdf-upload-card').classList.remove('hidden');
+  document.getElementById('hitlCard').classList.add('hidden');
+}
+function simulatePdfExtract() {
+  const btn = document.querySelector('.pdf-extract-btn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '⚙️ กำลังสกัดข้อมูล...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = orig;
+    btn.disabled = false;
+    showHitlView();
+  }, 1500);
+}
+
+// === SCENARIO COMPARISON (Gen Z) — Dual Slider ===
+// ROI steps: index 0-5 maps to [5, 10, 12, 15, 20, 34]
+const roiSteps = [5, 10, 12, 15, 20, 34];
+
+// Pre-computed grid: scenarioGrid[savingsPercent][roiIndex]
+const scenarioGrid = {
+  0:  [
+    { sum: '฿0.86M', monthly: '฿2,700', age: '53.8 ปี' },
+    { sum: '฿1.02M', monthly: '฿3,200', age: '51.0 ปี' },
+    { sum: '฿1.08M', monthly: '฿3,400', age: '50.0 ปี' },
+    { sum: '฿1.18M', monthly: '฿3,800', age: '48.5 ปี' },
+    { sum: '฿1.38M', monthly: '฿4,500', age: '46.2 ปี' },
+    { sum: '฿2.24M', monthly: '฿7,800', age: '39.5 ปี' },
+  ],
+  5: [
+    { sum: '฿1.05M', monthly: '฿3,400', age: '50.2 ปี' },
+    { sum: '฿1.25M', monthly: '฿4,100', age: '47.8 ปี' },
+    { sum: '฿1.32M', monthly: '฿4,400', age: '46.8 ปี' },
+    { sum: '฿1.44M', monthly: '฿4,900', age: '45.2 ปี' },
+    { sum: '฿1.69M', monthly: '฿5,800', age: '42.8 ปี' },
+    { sum: '฿2.74M', monthly: '฿10,100', age: '36.5 ปี' },
+  ],
+  10: [
+    { sum: '฿1.28M', monthly: '฿4,200', age: '47.1 ปี' },
+    { sum: '฿1.52M', monthly: '฿5,200', age: '44.8 ปี' },
+    { sum: '฿1.61M', monthly: '฿5,500', age: '43.8 ปี' },
+    { sum: '฿1.75M', monthly: '฿6,100', age: '42.3 ปี' },
+    { sum: '฿2.06M', monthly: '฿7,300', age: '40.0 ปี' },
+    { sum: '฿3.34M', monthly: '฿12,800', age: '34.2 ปี' },
+  ],
+  15: [
+    { sum: '฿1.54M', monthly: '฿5,100', age: '44.3 ปี' },
+    { sum: '฿1.83M', monthly: '฿6,400', age: '42.0 ปี' },
+    { sum: '฿1.94M', monthly: '฿6,800', age: '41.0 ปี' },
+    { sum: '฿2.11M', monthly: '฿7,500', age: '39.6 ปี' },
+    { sum: '฿2.48M', monthly: '฿9,000', age: '37.5 ปี' },
+    { sum: '฿4.02M', monthly: '฿15,800', age: '32.0 ปี' },
+  ],
+  20: [
+    { sum: '฿1.83M', monthly: '฿6,200', age: '41.8 ปี' },
+    { sum: '฿2.17M', monthly: '฿7,800', age: '39.5 ปี' },
+    { sum: '฿2.30M', monthly: '฿8,300', age: '38.6 ปี' },
+    { sum: '฿2.50M', monthly: '฿9,200', age: '37.2 ปี' },
+    { sum: '฿2.94M', monthly: '฿11,000', age: '35.2 ปี' },
+    { sum: '฿4.77M', monthly: '฿19,200', age: '30.0 ปี' },
+  ],
 };
 
-function updateScenario(val) {
-  const v = parseInt(val);
-  document.getElementById('gz-slider-val').textContent = v === 0 ? '+0%' : `+${v}%`;
-  const data = scenarioData[v];
-  const boostedCol = document.getElementById('gz-boosted-col');
+function updateCombinedScenario() {
+  const savingsVal = parseInt(document.getElementById('gz-slider').value);
+  const roiIdx = parseInt(document.getElementById('gz-roi-slider').value);
+  const roiPct = roiSteps[roiIdx];
   
-  document.getElementById('gz-boosted-label').textContent = data.label;
+  document.getElementById('gz-slider-val').textContent = savingsVal === 0 ? '+0%' : `+${savingsVal}%`;
+  document.getElementById('gz-roi-val').textContent = `${roiPct}%`;
+  
+  const data = scenarioGrid[savingsVal][roiIdx];
+  const boostedCol = document.getElementById('gz-boosted-col');
+  const isChanged = savingsVal > 0 || roiIdx > 0;
+  
+  let label;
+  if (!isChanged) {
+    label = 'เหมือนกัน · ยังไม่เลื่อน';
+  } else if (roiIdx >= 5) {
+    label = `🏆 +${savingsVal}% ออม · ROI ${roiPct}%`;
+  } else if (roiIdx >= 3 || savingsVal >= 15) {
+    label = `💎 +${savingsVal}% ออม · ROI ${roiPct}%`;
+  } else if (savingsVal >= 10 || roiIdx >= 2) {
+    label = `🚀 +${savingsVal}% ออม · ROI ${roiPct}%`;
+  } else {
+    label = `🔥 +${savingsVal}% ออม · ROI ${roiPct}%`;
+  }
+  
+  document.getElementById('gz-boosted-label').textContent = label;
   document.getElementById('gz-boosted-sum').textContent = data.sum;
   document.getElementById('gz-boosted-monthly').textContent = data.monthly;
   document.getElementById('gz-boosted-age').textContent = data.age;
   
-  if (v > 0) {
+  if (isChanged) {
     boostedCol.classList.add('active');
   } else {
     boostedCol.classList.remove('active');
@@ -188,23 +280,6 @@ function submitFeedback(persona) {
   const personaName = persona === 'genz' ? 'น้องใหม่ไฟแรง' : 'คุณแม่สายสู้';
   const time = new Date().toISOString();
   
-  //const formData = new FormData();
-  //formData.append(GOOGLE_FORM_CONFIG.fields.persona, personaName);
-  //formData.append(GOOGLE_FORM_CONFIG.fields.rating, state.rating);
-  //formData.append(GOOGLE_FORM_CONFIG.fields.ratingLabel, state.ratingLabel);
-  //formData.append(GOOGLE_FORM_CONFIG.fields.confusedSection, state.confusedSections.join(', ') || '-');
-  //formData.append(GOOGLE_FORM_CONFIG.fields.comment, comment || '-');
-  //formData.append(GOOGLE_FORM_CONFIG.fields.time, time);
-  
-  // Send to Google Forms (no-cors, fire and forget) ของเดิม
-  //if (GOOGLE_FORM_CONFIG.actionUrl.indexOf('YOUR_FORM_ID') === -1) {
-  //  fetch(GOOGLE_FORM_CONFIG.actionUrl, {
-  //    method: 'POST',
-  //    mode: 'no-cors',
-  //    body: formData,
-  //  }).catch(() => {});
-  //}
-  // เปลี่ยนจากการใช้ new FormData() เป็น new URLSearchParams()
   const urlParams = new URLSearchParams();
   urlParams.append(GOOGLE_FORM_CONFIG.fields.persona, personaName);
   urlParams.append(GOOGLE_FORM_CONFIG.fields.rating, state.rating);
@@ -214,16 +289,14 @@ function submitFeedback(persona) {
   urlParams.append(GOOGLE_FORM_CONFIG.fields.time, time);
   
   // Send to Google Forms (no-cors, fire and forget)
-  if (GOOGLE_FORM_CONFIG.actionUrl.indexOf('YOUR_FORM_ID') === -1) {
-    fetch(GOOGLE_FORM_CONFIG.actionUrl, {
-      method: 'POST',
-      mode: 'no-cors', // จำเป็นต้องใช้ no-cors สำหรับ Google Forms
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded' // เพิ่ม Header นี้เข้าไป
-      },
-      body: urlParams, // ส่ง urlParams แทน formData
-    }).catch((err) => console.error("Error submitting form:", err));
-  }
+  fetch(GOOGLE_FORM_CONFIG.actionUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: urlParams,
+  }).catch((err) => console.error('Error submitting form:', err));
   
   // Also log to console for demo
   console.log('Feedback submitted:', {
