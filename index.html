@@ -125,20 +125,37 @@
         <span class="card-icon">📊</span>
         <span>SCENARIO COMPARISON — ถ้าเพิ่มออมอีก จะเกิดอะไรขึ้น?</span>
       </div>
-      <!-- Slider -->
+      <!-- Savings Slider -->
       <div class="slider-container">
         <label class="slider-label">เพิ่มอัตราออมอีก</label>
         <div class="slider-row">
-          <input type="range" min="0" max="20" value="0" step="5" class="scenario-slider" id="gz-slider" oninput="updateScenario(this.value)">
+          <input type="range" min="0" max="20" value="0" step="5" class="scenario-slider" id="gz-slider" oninput="updateCombinedScenario()">
           <span class="slider-value" id="gz-slider-val">+0%</span>
         </div>
         <div class="slider-ticks">
-          <span>ไม่เพิ่ม (0%)</span>
+          <span>ไม่เพิ่ม</span>
           <span>+5%</span>
           <span>+10%</span>
           <span>+15%</span>
           <span>+20%</span>
         </div>
+      </div>
+      <!-- ROI Slider -->
+      <div class="slider-container">
+        <label class="slider-label">อัตราผลตอบแทนต่อปี (ROI)</label>
+        <div class="slider-row">
+          <input type="range" min="0" max="5" value="0" step="1" class="scenario-slider roi-slider" id="gz-roi-slider" oninput="updateCombinedScenario()">
+          <span class="slider-value roi-value" id="gz-roi-val">5%</span>
+        </div>
+        <div class="slider-ticks roi-ticks">
+          <span>5%</span>
+          <span>10%</span>
+          <span>12%</span>
+          <span>15%</span>
+          <span>20%</span>
+          <span>34%</span>
+        </div>
+        <p class="roi-note">* 34% = ผลตอบแทนจริงของ Admin (แผนผสมสัดส่วนเอง)</p>
       </div>
       <!-- Comparison Columns -->
       <div class="scenario-compare">
@@ -205,7 +222,7 @@
         <p class="cta-desc">จำลองการลดหย่อนภาษีเพื่อเพิ่มเงินออม</p>
         <span class="cta-arrow">เปิด Simulator ›</span>
       </button>
-      <button class="cta-btn genz-cta" onclick="alert('Zero Data Entry — Coming Soon!')">
+      <button class="cta-btn genz-cta" onclick="openModal('pdfModal')">
         <span>⭕</span> Zero Data Entry
         <p class="cta-desc">โยนไฟล์ PDF คำนวณ ให้ AI อัปเดตทุกอย่าง</p>
         <span class="cta-arrow">อัปโหลด PDF ›</span>
@@ -213,7 +230,7 @@
     </section>
 
     <!-- Optimize Now -->
-    <section class="card genz-card optimize-card">
+    <section class="card genz-card optimize-card" onclick="openModal('leaderboardModal')" style="cursor:pointer">
       <div class="optimize-icon">⚡</div>
       <div class="optimize-text">Optimize Now — ปรับพอร์ตตาม Master Portfolio ล่าสุด</div>
     </section>
@@ -307,6 +324,10 @@
           <span class="clock-num mom-num" id="mom-months">4</span>
           <span class="clock-unit mom-unit">เดือน</span>
         </div>
+        <div class="retirement-savings-row">
+          <span class="rs-label">เงินเก็บเกษียณปัจจุบัน</span>
+          <span class="rs-amount">฿1,200,000</span>
+        </div>
         <p class="mom-clock-note">คุณมีเงินใช้ชีวิตหลังเกษียณแบบ <span id="mom-lifestyle-label">🏠 มาตรฐาน</span> ได้ <span id="mom-lifestyle-sub">ใช้จ่ายมาตรฐาน ใต้แผนบำนาจีที่ดี</span></p>
         <div class="coverage-bar-container">
           <div class="coverage-label">ความครอบคลุมหลุมหลังเกษียณ</div>
@@ -361,6 +382,7 @@
       <div class="progress-bar mom-progress">
         <div class="progress-fill" style="width:78%"></div>
       </div>
+      <p class="edu-insight">ลูกได้เรียนมหาวิทยาลัยชั้นนำ จบมาหางานง่าย มีสังคมเพื่อนที่ดี</p>
     </section>
 
     <!-- Monthly Saving -->
@@ -390,7 +412,7 @@
       <div class="upload-icon">📤</div>
       <h3 class="upload-title">อัปเดตความอุ่นใจล่าสุด</h3>
       <p class="upload-desc">โยนไฟล์ PDF ใบแจ้งเข้ามา ไม่ต้องพิมพ์ตัวเลขเองค่ะ</p>
-      <button class="cta-btn mom-cta upload-btn" onclick="alert('PDF Upload — Coming Soon!')">📎 เลือกไฟล์ PDF</button>
+      <button class="cta-btn mom-cta upload-btn" onclick="openModal('pdfModal')">📎 เลือกไฟล์ PDF</button>
     </section>
 
     <!-- Weekly Summary -->
@@ -466,6 +488,81 @@
     </footer>
   </div>
 </main>
+
+<!-- ==================== MODALS ==================== -->
+<!-- PDF Upload Modal -->
+<div class="modal-overlay hidden" id="pdfModal" onclick="if(event.target===this)closeModal('pdfModal')">
+  <div class="modal-content pdf-modal-content">
+    <button class="modal-close" onclick="closeModal('pdfModal')">&times;</button>
+    <div class="pdf-modal-inner">
+      <div class="pdf-upload-card">
+        <div class="pdf-header">
+          <div class="pdf-icon-circle">📄</div>
+          <h2 class="pdf-title">นำเข้าใบแจ้งยอด กบข.</h2>
+          <p class="pdf-desc">อัปโหลดไฟล์ e-Statement (PDF) ของคุณ ระบบจะสกัดข้อมูลตัวเลขเพื่อนำไปคำนวณกำไรให้โดยอัตโนมัติ</p>
+        </div>
+        <div class="pdf-dropzone" id="pdfDropzone">
+          <span class="drop-icon">📥</span>
+          <p><strong class="drop-link">คลิกเพื่อเลือกไฟล์</strong> หรือลากไฟล์มาวางที่นี่</p>
+          <p class="drop-hint">รองรับเฉพาะไฟล์ .PDF</p>
+        </div>
+        <div class="pdf-field">
+          <label>รหัสผ่านเปิดไฟล์ PDF (วันเดือนปีเกิด)</label>
+          <input type="password" placeholder="เช่น 23112532 (ddmmyyyy)" class="pdf-input">
+          <p class="pdf-secure">🔒 ปลอดภัยสูงสุด: ระบบจะไม่เก็บรหัสผ่านและข้อมูลส่วนตัวของคุณ</p>
+        </div>
+        <button class="pdf-extract-btn" onclick="simulatePdfExtract()">🤖 ให้ AI สกัดข้อมูลอัจฉริยะ</button>
+        <div class="pdf-divider"><span>หรือ</span></div>
+        <button class="pdf-manual-btn" onclick="showHitlView()">✍️ กรอกข้อมูลด้วยตนเอง (ข้ามการอัปโหลด)</button>
+      </div>
+      <!-- HITL Data Verification -->
+      <div class="hitl-card hidden" id="hitlCard">
+        <h2 class="hitl-title"><span>👀</span> จัดการข้อมูลพอร์ต กบข.</h2>
+        <p class="hitl-desc">ตรวจสอบตัวเลขที่ระบบดึงมา หรือกรอกตัวเลขด้วยตนเอง</p>
+        <div class="hitl-fields">
+          <div class="hitl-row">
+            <label>ปีของใบแจ้งยอด (พ.ศ.)</label>
+            <input type="number" value="2568" class="hitl-input">
+          </div>
+          <div class="hitl-row">
+            <label>🔴 ยอดยกมา - รวมเงินต้น (บาท)</label>
+            <input type="number" step="0.01" value="7920.00" class="hitl-input">
+          </div>
+          <div class="hitl-row">
+            <label>🔵 ยอดระหว่างปี - รวมเงินต้น (บาท)</label>
+            <input type="number" step="0.01" value="17277.60" class="hitl-input">
+          </div>
+          <div class="hitl-units">
+            <label>🟢 จำนวนหน่วยลงทุน (ระบุตามแผน)</label>
+            <div class="hitl-unit-row">
+              <select class="hitl-select"><option selected>แผนเงินฝาก/ตราสารหนี้</option><option>แผนหลัก</option></select>
+              <input type="number" step="0.0001" value="957.4381" class="hitl-input small">
+            </div>
+            <div class="hitl-unit-row">
+              <select class="hitl-select"><option>แผนหลัก</option><option selected>แผนทองคำ</option></select>
+              <input type="number" step="0.0001" value="118.9984" class="hitl-input small">
+            </div>
+          </div>
+        </div>
+        <div class="hitl-actions">
+          <button class="hitl-cancel" onclick="hideHitlView()">ยกเลิก</button>
+          <button class="hitl-save" onclick="alert('บันทึกข้อมูลเข้าสู่ The Scalable Vault เรียบร้อยแล้ว!');closeModal('pdfModal')">💾 บันทึกเข้าพอร์ต</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Leaderboard Modal -->
+<div class="modal-overlay hidden" id="leaderboardModal" onclick="if(event.target===this)closeModal('leaderboardModal')">
+  <div class="modal-content leaderboard-modal-content">
+    <button class="modal-close" onclick="closeModal('leaderboardModal')">&times;</button>
+    <h2 class="lb-title">📊 Leaderboard & Benchmark</h2>
+    <p class="lb-desc">ทำไมต้องมี Master Portfolio ให้ลอกการบ้าน?</p>
+    <img src="./image.jpg" alt="Leaderboard & Benchmark" class="lb-image">
+    <p class="lb-note">* เปรียบเทียบผลตอบแทนสะสม YTD ของแผน กบข. แต่ละประเภท</p>
+  </div>
+</div>
 
 <script src="./app.js"></script>
 </body>
